@@ -6,19 +6,14 @@ terraform {
     }
   }
 }
-# Define provider configuration
+
 provider "google" {
-  project     = "hc-a0411e550991411898ee2ce2c2e"
-  region      = "us-central1"
+  project = "hc-a0411e550991411898ee2ce2c2e"
+  region  = "us-central1"
+  zone    = "us-central1-c"
 }
 
-# Create a GCP Virtual Private Cloud (VPC) network
-resource "google_compute_network" "my_network" {
-  name                    = "my-network"
-  auto_create_subnetworks = false
+resource "google_compute_network" "vpc_network" {
+  name = "terraform-network"
 }
 
-# Output the network self-link
-output "network_self_link" {
-  value = google_compute_network.my_network.self_link
-}
